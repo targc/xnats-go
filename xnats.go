@@ -45,6 +45,14 @@ func Connect(opt ConnectOpt) (*XNats, error) {
 	}, nil
 }
 
+func (x *XNats) NC() *nats.Conn {
+	return x.nc
+}
+
+func (x *XNats) JS() jetstream.JetStream {
+	return x.js
+}
+
 func (h *XNats) Consumer(ctx context.Context, stream, consumerID string) (*Consumer, error) {
 	s, err := h.js.Stream(ctx, stream)
 
